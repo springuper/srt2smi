@@ -2,6 +2,7 @@ function serialize(data) {
   const result = [];
 
   result.push('<sami>');
+
   // header
   result.push('<head>');
   result.push('</head>');
