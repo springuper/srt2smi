@@ -1,6 +1,6 @@
 {
   "name": "srt2smi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "convert srt to smi subtitles",
   "main": "lib/index.js",
   "directories": {
