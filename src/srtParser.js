@@ -4,8 +4,9 @@ function formatTime(timeStr) {
   const hours = parseInt(chunks[0], 10);
   const minutes = parseInt(chunks[1], 10);
   const seconds = parseInt(secondChunks[0], 10);
-  const milliSeconds = parseInt(secondChunks[1], 10)
+  const milliSeconds = parseInt(secondChunks[1], 10);
 
+  // eslint-disable-next-line no-mixed-operators
   return (((hours * 60 + minutes) * 60) + seconds) * 1000 + milliSeconds;
 }
 
@@ -17,26 +18,27 @@ function parse(str) {
   };
 
   lines.forEach((line, index) => {
-    line = line.trim();
+    const lineContent = line.trim();
 
-    if (typeof parseInt(line, 10) === 'number' && (index === 0 || lines[index - 1] === '')) {
+    if (typeof parseInt(lineContent, 10) === 'number' && (index === 0 || lines[index - 1] === '')) {
       // index
-      item.index = parseInt(line, 10);
-    } else if (line.indexOf(' --> ') > -1) {
+      item.index = parseInt(lineContent, 10);
+    } else if (lineContent.indexOf(' --> ') > -1) {
       // timestamp
-      times = line.split(' --> ');
+      const times = lineContent.split(' --> ');
       item.start = formatTime(times[0]);
       item.end = formatTime(times[1]);
-    } else if (line === '') {
+    } else if (lineContent === '') {
       // empty line, reset everything
       item.text = item.text.join('\n');
       result.push(item);
+
       item = {
         text: [],
       };
     } else {
       // text
-      item.text.push(line);
+      item.text.push(lineContent);
     }
   });
 
